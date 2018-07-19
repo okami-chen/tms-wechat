@@ -1,0 +1,30 @@
+{
+    "name": "okami-chen/tms-wechat",
+    "type": "library",
+    "keywords": ["laravel","php","wechat"],
+    "description": "tms-wechat module",
+    "homepage": "https://github.com/okami-chen/tms-wechat",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "OkamiChen",
+            "email": "x25125x@126.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "encore/laravel-admin": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "OkamiChen\\TmsWechat\\":"src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OkamiChen\\TmsWechat\\WechatServiceProvider"
+            ]
+        }
+    }
+}
