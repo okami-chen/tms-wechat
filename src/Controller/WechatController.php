@@ -74,7 +74,13 @@ class WechatController extends Controller
     {
         return Admin::grid(Wechat::class, function (Grid $grid) {
 
+            $states = [
+                'on'  => ['value' => 1, 'text' => '正常', 'color' => 'primary'],
+                'off' => ['value' => 0, 'text' => '限登', 'color' => 'default'],
+            ];
+                        
             $grid->id('编号')->sortable();
+            $grid->column('is_active','状态')->switch($states);
             $grid->column('phone.name', '姓名');
             $grid->column('name', '实名');
             $grid->column('mobile', '手机号');
@@ -110,6 +116,11 @@ class WechatController extends Controller
                 }
             })->ajax($ajax);
             
+            $states = [
+                'on'  => ['value' => 1, 'text' => '正常', 'color' => 'primary'],
+                'off' => ['value' => 0, 'text' => '限登', 'color' => 'default'],
+            ];
+            $form->switch('is_active','状态')->states($states)->default(1);
             $form->mobile('mobile','手机');
             
             $form->display('created_at', '创建时间');

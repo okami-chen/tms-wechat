@@ -15,6 +15,7 @@ class CreateTmsWechatTable extends Migration
     {
         Schema::create('wechat', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->boolean('is_active')->comment('是否激活')->default(1);
             $table->unsignedBigInteger('mobile_id')->comment('关联手机')->nullable();
             $table->string('name', 20)->comment('姓名');
             $table->string('mobile', 11)->comment('手机号');
