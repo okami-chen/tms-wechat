@@ -8,6 +8,7 @@
 
 namespace OkamiChen\TmsWechat\Observer;
 
+use OkamiChen\TmsMobile\Entity\Mobile;
 /**
  * Description of TaskObserver
  * @date 2018-6-21 17:47:15
@@ -15,8 +16,15 @@ namespace OkamiChen\TmsWechat\Observer;
  */
 class WechatObserver {
     
-    public function updating($model){
-        //$model->mobile  = 13671733313;
+    public function creating($model){
+        $mobile = Mobile::find($model->mobile_id);
+        $model->mobile  = $mobile->mobile;
         return $model;
+    }
+    
+    public function updating($model){
+        $mobile = Mobile::find($model->mobile_id);
+        $model->mobile  = $mobile->mobile;
+        return $model;        
     }
 }

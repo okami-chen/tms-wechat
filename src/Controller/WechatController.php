@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use OkamiChen\TmsWechat\Entity\Wechat;
 use OkamiChen\TmsMobile\Entity\Mobile;
+use Encore\Admin\Grid\Filter;
 
 class WechatController extends Controller
 {
@@ -25,7 +26,7 @@ class WechatController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('微信');
-            $content->description('description');
+            $content->description('');
 
             $content->body($this->grid());
         });
@@ -42,7 +43,7 @@ class WechatController extends Controller
         return Admin::content(function (Content $content) use ($id) {
 
             $content->header('微信');
-            $content->description('description');
+            $content->description('');
 
             $content->body($this->form()->edit($id));
         });
@@ -58,7 +59,7 @@ class WechatController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('微信');
-            $content->description('description');
+            $content->description('');
 
             $content->body($this->form());
         });
@@ -74,8 +75,18 @@ class WechatController extends Controller
         return Admin::grid(Wechat::class, function (Grid $grid) {
 
             $grid->id('编号')->sortable();
-
+            $grid->column('phone.name', '姓名');
+            $grid->column('name', '实名');
+            $grid->column('mobile', '手机号');
             $grid->column('created_at','创建时间');
+            
+            $grid->filter(function(Filter $filter){
+                $filter->disableIdFilter();
+                $filter->like('mobile', '手机');
+            });
+            
+            $grid->paginate(50);
+            
         });
     }
 
@@ -103,12 +114,6 @@ class WechatController extends Controller
             
             $form->display('created_at', '创建时间');
             $form->display('updated_at', '修改时间');
-//            $form->saving(function(Form $form){
-//                $id     = $form->input('mobile_id');
-//                $mobile = Mobile::find($id);
-//                $form->model()->mobile = $mobile->mobile;
-//                return $form;
-//            });
         });
     }
 }

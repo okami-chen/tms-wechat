@@ -22,15 +22,7 @@ class Wechat extends Model
      * @return \OkamiChen\TmsMobile\Entity\Mobile | NULL
      */
     public function phone(){
-        
-        $default    = \OkamiChen\TmsMobile\Entity\Mobile::class;
-        $obj        = config('tms-wechat-config.mobile.class', $default);
-        
-        if(class_exists($obj)){
-            return $this->belongsTo($obj);
-        }
-        
-        return NULL;
+        return $this->belongsTo(\OkamiChen\TmsMobile\Entity\Mobile::class, 'mobile_id');
     }
 
 }
