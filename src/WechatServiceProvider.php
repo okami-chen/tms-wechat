@@ -54,7 +54,7 @@ class WechatServiceProvider extends ServiceProvider
         ];
 
         Route::group($attributes, function (Router $router) {
-            $router->resource('wechat', 'WechatController',['as'=>'tms']);
+            $router->resource('/module/wechat/default', 'WechatController',['as'=>'tms']);
         });
     }
     
