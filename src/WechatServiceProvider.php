@@ -14,7 +14,7 @@ class WechatServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        'OkamiChen\TmsTask\Console\Command\ExecuteCommand',
+        __NAMESPACE__.'\Console\Command\ExecuteCommand',
     ];
     /**
      * Bootstrap services.
@@ -49,7 +49,7 @@ class WechatServiceProvider extends ServiceProvider
         
         $attributes = [
             'prefix'     => config('admin.route.prefix'),
-            'namespace'  => 'OkamiChen\TmsWechat\Controller',
+            'namespace'  => __NAMESPACE__.'\Controller',
             'middleware' => config('admin.route.middleware'),
         ];
 
